@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Green Earth</title>
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="shortcut icon" href="assets/hero-leaf1.png" type="image/x-icon">
     <!-- Tailwind CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- Daisy UI CDN -->
@@ -13,16 +14,46 @@
 </head>
 
 <body>
-
-    <nav class="navbar px-6 py-4">
+    <nav class="bg-[#15803D] px-6 py-4 navbar">
         <h1 class="font-bold text-xl text-white">Green Earth</h1>
-        <div class="flex gap-6 text-white">
-            <h3>About</h3>
-            <h3>Gallery</h3>
-            <h3>Plant a Tree</h3>
+
+        <div class="hidden md:flex gap-6 text-white">
+            <h3 class="cursor-pointer">About</h3>
+            <h3 class="cursor-pointer">Gallery</h3>
+            <h3 class="cursor-pointer">Plant a Tree</h3>
         </div>
-        <button class="navbar-btn px-4 py-2 rounded-full hover:bg-green-700"> Plant a Tree </button>
+
+        <div class="flex items-center gap-4">
+            <button
+                class="hidden md:inline-block bg-[#FACC15] text-[#15803D] px-4 py-2 rounded-full cursor-pointer">Plant a
+                Tree</button>
+
+            <button id="nav-btn" class="md:hidden text-white text-2xl">☰</button>
+        </div>
     </nav>
+
+    <div id="mobile-menu" class="hidden flex-col gap-4 px-6 py-4 bg-[#15803D] text-white md:hidden">
+        <h3 class="cursor-pointer">About</h3>
+        <h3 class="cursor-pointer">Gallery</h3>
+        <h3 class="cursor-pointer">Plant a Tree</h3>
+        <br>
+        <button class="bg-[#FACC15] text-[#15803D] px-4 py-2 rounded-full w-full">Plant a Tree</button>
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center justify-center gap-10 bg-[#CFF0DC]">
+        <img src="assets/hero-leaf1.png" alt="Left Leaf" class="w-64 md:w-96 h-auto">
+
+        <div class="text-center max-w-xl">
+            <h1 class="text-4xl font-bold mb-4 text-black">Plant a Tree, Grow a Future</h1>
+            <p class="mb-6 text-black">
+                Join our mission to plant 1 million trees and make the Earth greener for future generations.</p>
+            <button class="bg-[#FACC15] text-[#15803D] px-6 py-2 rounded-full font-medium">Get Involved</button>
+        </div>
+        <img src="assets/hero-leaf2.png" alt="Right Leaf" class="w-64 md:w-96 h-auto">
+    </div>
+
+
+
     <script src="script.js"></script>
 </body>
 
