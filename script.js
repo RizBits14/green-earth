@@ -38,17 +38,16 @@ function hideLoader() {
     plantsContainer.classList.remove("hidden");
 }
 
-async function loadCategories() {
-    try {
-        const res = await fetch("https://openapi.programming-hero.com/api/categories");
-        const data = await res.json();
-        if (data.status && Array.isArray(data.categories)) {
-            displayCategories(data.categories);
-        }
-    } catch (error) {
-        console.error("Error fetching categories:", error);
-    }
+function loadCategories() {
+    fetch("https://openapi.programming-hero.com/api/categories")
+        .then(res => res.json())
+        .then(data => {
+            if (data.status && Array.isArray(data.categories)) {
+                displayCategories(data.categories);
+            }
+        });
 }
+
 
 function displayCategories(categories) {
     const allBtn = document.createElement("button");
@@ -77,37 +76,33 @@ function setActiveCategory(clickedBtn) {
     clickedBtn.classList.add("active");
 }
 
-async function loadPlants() {
+function loadPlants() {
     showLoader();
-    try {
-        const res = await fetch("https://openapi.programming-hero.com/api/plants");
-        const data = await res.json();
-        if (data.status && Array.isArray(data.plants)) {
-            displayPlants(data.plants);
-        }
-    } catch (error) {
-        console.error("Error fetching plants:", error);
-    } finally {
-        hideLoader();
-    }
+    fetch("https://openapi.programming-hero.com/api/plants")
+        .then(res => res.json())
+        .then(data => {
+            if (data.status && Array.isArray(data.plants)) {
+                displayPlants(data.plants);
+            }
+        })
+        .finally(() => hideLoader());
 }
 
-async function loadPlantsByCategory(id) {
+
+function loadPlantsByCategory(id) {
     showLoader();
-    try {
-        const res = await fetch(`https://openapi.programming-hero.com/api/category/${id}`);
-        const data = await res.json();
-        if (data.status && Array.isArray(data.plants)) {
-            displayPlants(data.plants);
-        } else {
-            plantsContainer.innerHTML = "<p class='col-span-3 text-center'>No plants in this category.</p>";
-        }
-    } catch (error) {
-        console.error("Error fetching category plants:", error);
-    } finally {
-        hideLoader();
-    }
+    fetch(`https://openapi.programming-hero.com/api/category/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.status && Array.isArray(data.plants)) {
+                displayPlants(data.plants);
+            } else {
+                plantsContainer.innerHTML = "<p class='col-span-3 text-center'>No plants in this category.</p>";
+            }
+        })
+        .finally(() => hideLoader());
 }
+
 
 function displayPlants(plants) {
     plantsContainer.innerHTML = "";
@@ -176,23 +171,22 @@ function updateCartUI() {
     cartTotalEl.textContent = `৳${total}`;
 }
 
-async function showPlantDetails(id) {
-    try {
-        const res = await fetch(`https://openapi.programming-hero.com/api/plant/${id}`);
-        const data = await res.json();
-        if (data.status && data.plants) {
-            const plant = data.plants;
-            modalImage.src = plant.image;
-            modalName.textContent = plant.name;
-            modalDescription.textContent = plant.description;
-            modalCategory.textContent = plant.category;
-            modalPrice.textContent = `৳${plant.price}`;
-            modal.style.display = "flex";
-        }
-    } catch (error) {
-        console.error("Error fetching plant details:", error);
-    }
+function showPlantDetails(id) {
+    fetch(`https://openapi.programming-hero.com/api/plant/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            if (data.status && data.plants) {
+                const plant = data.plants;
+                modalImage.src = plant.image;
+                modalName.textContent = plant.name;
+                modalDescription.textContent = plant.description;
+                modalCategory.textContent = plant.category;
+                modalPrice.textContent = `৳${plant.price}`;
+                modal.style.display = "flex";
+            }
+        });
 }
+
 
 modalClose.addEventListener("click", () => {
     modal.style.display = "none";
