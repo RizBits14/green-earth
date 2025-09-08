@@ -14,19 +14,20 @@
 </head>
 
 <body>
-    <nav class="bg-[#15803D] px-6 py-4 navbar">
-        <h1 class="font-bold text-xl text-white">Green Earth</h1>
+    <!-- Navbar and Menu -->
+    <nav class="flex gap-6 justify-around items-center bg-[#15803D] px-6 py-4">
+        <h1 class="text-white font-bold text-xl">Green Earth</h1>
 
-        <div class="hidden md:flex gap-6 text-white">
+        <div class="hidden md:flex gap-4 text-white">
             <h3 class="cursor-pointer">About</h3>
             <h3 class="cursor-pointer">Gallery</h3>
             <h3 class="cursor-pointer">Plant a Tree</h3>
         </div>
 
         <div class="flex items-center gap-4">
-            <button
-                class="hidden md:inline-block bg-[#FACC15] text-[#15803D] px-4 py-2 rounded-full cursor-pointer">Plant a
-                Tree</button>
+            <button class="hidden md:inline-block bg-[#FACC15] text-[#15803D] px-4 py-2 rounded-full cursor-pointer">
+                Plant a Tree
+            </button>
 
             <button id="nav-btn" class="md:hidden text-white text-2xl">☰</button>
         </div>
@@ -40,19 +41,69 @@
         <button class="bg-[#FACC15] text-[#15803D] px-4 py-2 rounded-full w-full">Plant a Tree</button>
     </div>
 
+    <!-- Banner -->
     <div class="flex flex-col md:flex-row items-center justify-center gap-10 bg-[#CFF0DC]">
         <img src="assets/hero-leaf1.png" alt="Left Leaf" class="w-64 md:w-96 h-auto">
 
         <div class="text-center max-w-xl">
             <h1 class="text-4xl font-bold mb-4 text-black">Plant a Tree, Grow a Future</h1>
-            <p class="mb-6 text-black">
-                Join our mission to plant 1 million trees and make the Earth greener for future generations.</p>
+            <p class="mb-6 text-black">Join our mission to plant 1 million trees and make the Earth greener for future
+                generations.</p>
             <button class="bg-[#FACC15] text-[#15803D] px-6 py-2 rounded-full font-medium">Get Involved</button>
         </div>
         <img src="assets/hero-leaf2.png" alt="Right Leaf" class="w-64 md:w-96 h-auto">
     </div>
 
+    <!-- Main Section with Cards -->
+    <div class="text-center mt-6 mb-8">
+        <h1 class="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800">
+            Choose Your Tree
+        </h1>
+    </div>
 
+    <div class="flex flex-col lg:flex-row w-full min-h-screen gap-6 px-4 md:px-10 lg:px-10">
+
+        <aside class="w-full lg:w-1/5 p-4  rounded-md">
+            <h2 class="font-bold text-lg mb-4">Categories</h2>
+            <div id="categories-container" class="flex flex-col gap-2"></div>
+        </aside>
+
+        <main class="flex-1">
+            <div id="loader" class="flex justify-center items-center py-10">
+                <span class="loading loading-dots loading-lg"></span>
+            </div>
+
+            <div id="plants-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+        </main>
+
+        <aside class="w-full lg:w-1/5 p-4">
+            <div class="bg-white rounded-lg shadow p-4">
+                <h2 class="font-bold text-lg mb-4">Your Cart</h2>
+                <div id="cart-items" class="flex flex-col gap-3"></div>
+                <hr class="my-3">
+                <p class="font-semibold flex justify-between">Total: <span id="cart-total">৳ 0</span></p>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Card Modal -->
+    <div id="plant-modal"
+        class="fixed inset-0 backdrop-blur-xl bg-opacity-50 flex justify-center hidden items-center z-50">
+        <div class="bg-white rounded-lg p-6 max-w-lg w-full relative flex flex-col gap-4">
+            <h2 id="modal-name" class="text-xl font-bold mb-2 text-center"></h2>
+            <img id="modal-image" src="" alt="" class="w-full h-70 object-cover rounded-3xl mb-4 p-4">
+            <span id="modal-category"
+                class="bg-green-600 text-white px-3 py-1 rounded-full mb-2 inline-block text-center"></span>
+            <p id="modal-price" class="font-semibold text-gray-800 mt-2 text-center"></p>
+            <p id="modal-description" class="text-gray-700 mb-2 text-center"></p>
+            <!-- Only close button -->
+            <button id="modal-close"
+                class="bg-red-500 text-white px-4 py-2 rounded-full mt-4 self-center hover:bg-red-600">
+                Close
+            </button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
