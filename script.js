@@ -21,13 +21,6 @@ menuBtn.addEventListener("click", () => {
     mobileMenu.classList.toggle("hidden");
 });
 
-const mobileMenuItems = mobileMenu.querySelectorAll("h3, button");
-mobileMenuItems.forEach(item => {
-    item.addEventListener("click", () => {
-        mobileMenu.classList.add("hidden");
-    });
-});
-
 function showLoader() {
     loader.style.display = "flex";
     plantsContainer.classList.add("hidden");
@@ -118,7 +111,7 @@ function displayPlants(plants) {
                 <span class="category-tag">${plant.category}</span>
                 <p class="price">৳${plant.price}</p>
             </div>
-            <p>${plant.description}</p>
+            <p class="line-clamp-2">${plant.description}</p>
             <div class="add-btn w-full text-center mt-2 cursor-pointer rounded-full">Add to Cart</div>
         `;
 
